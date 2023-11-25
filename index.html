@@ -3,17 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Imagine</title>
 </head>
 <body>
     <h5>Future is not like it used to be!</h5>
-    <img src="" alt="">
+    <img id="image">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/jquery.imagine.js"></script>
 
     <script>
         $().ready(function(){
-            $("h5").imagine();
+            $('img')
+            .imagine()  
+            .url('https://source.unsplash.com/user/c_v_r/1900×800')
+            .placeholder('https://placehold.co/400')
+            // .resize(400,400)
+            // .rotate()
+            // .scale()
+            .circular()
+            .alt('Alternative');
         });
     </script>
 </body>

@@ -15,12 +15,10 @@
         $().ready(function(){
             $('img')
             .imagine()  
-            .url('https://source.unsplash.com/user/c_v_r/1900×800')
-            .placeholder('https://placehold.co/400')
-            // .resize(400,400)
-            // .rotate()
-            // .scale()
-            .circular()
+            .url('https://ichef.bbci.co.uk/news/800/cpsprodpb/17C16/production/_117320379_giocondacerca.jpg')            
+            .resize("200,200") //units in pixels
+            .rotate("90")            
+            .circular(true)            
             .alt('Alternative');
         });
     </script>

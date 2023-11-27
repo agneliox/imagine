@@ -6,20 +6,25 @@
     <title>Imagine</title>
 </head>
 <body>
-    <h5>Future is not like it used to be!</h5>
-    <img id="image">
+    <div class="image">
+        <img />
+    </div>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/jquery.imagine.js"></script>
 
     <script>
         $().ready(function(){
-            $('img')
+            $('.image')
             .imagine()  
             .url('https://ichef.bbci.co.uk/news/800/cpsprodpb/17C16/production/_117320379_giocondacerca.jpg')            
-            .resize("200,200") //units in pixels
-            .rotate("90")            
-            .circular(true)            
-            .alt('Alternative');
+            .resize("400,400") //resize("width, height") in pixels
+            .rotate("0") // rotation angle in degrees            
+            .circular(0)  // toggle to circular shape if true, expects a boolean value
+            .caption("Fig. 1 Future is not like it used to be!, left") //caption text plus alignment parameter separated by comman         
+            .alt('Alternative') // set alternative text in case image fails to load
+            .style("border: 3px solid red"); // custom style 
+            // .style({"border": "3px solid red"}); multiple css to be implemented
         });
     </script>
 </body>

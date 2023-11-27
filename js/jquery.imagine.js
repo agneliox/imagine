@@ -1,8 +1,9 @@
 
 (function($) {
     $.fn.imagine = function(){
-
+        
         var element = this;
+        var image = jQuery("img", this);
 
         var defaults = {
             url: "",
@@ -12,6 +13,7 @@
             resize: null,
             rotate:null,
             circular: false,
+            caption: null,
             style:""            
         }
 
@@ -40,28 +42,12 @@
                 return this;
             }
             if(defaults.url===""){
-                element.attr('src', holder); 
+                image.attr('src', holder); 
                 updateImage();
                 return this; 
             }                    
         };
-        
-        // aleternative text
-        function setAlternative(text){
-            defaults.alt = text;
-            console.log("Imagine: alternative text = " + text);
-            updateImage();
-            return this;    
-        }
-
-        // circular
-        function setCircular(circular){
-            defaults.circular = circular;
-            console.log("Imagine: circular is  = " + circular);
-            updateImage();
-            return this;
-        }
-
+                
         // resize
          function setResize(resize) {
             defaults.resize = resize;
@@ -75,7 +61,7 @@
          function setRotate(degree){
             // angle in deg
             defaults.rotate = degree;
-            element.animate({  transform:  defaults.rotate  }, 
+            image.animate({  transform:  defaults.rotate  }, 
                     {
                     step: function(now,fx) 
                     {
@@ -90,36 +76,59 @@
             updateImage();             
             return this;                           
         };        
-        // end of rotate 
+        // end of rotate        
 
-        // scale
-        function setScale(scale) {             
-            // element.attr({ 
-            //         'width': element.width() *  defaults.scale,
-            //         'height': element.height() *  defaults.scale                   
-            //     });            
-            console.log("Imagine: scale = " + scale);
+        // circular
+        function setCircular(circular){
+            defaults.circular = circular;
+            console.log("Imagine: circular is  = " + circular);
             updateImage();
-            return this;            
-        };      
-        // end of scale
+            return this;
+        }
+         
+        // caption text
+        function setCaption(caption){
+            defaults.caption = caption;
+            var cap = defaults.caption.split(",");
+            element.append("<p class='caption-text'>"+ cap[0]+"</>");
+            $(".caption-text").css("textAlign", cap[1]);
+            updateImage();
+            return this;    
+        }
+
+        // alternative text
+        function setAlternative(text){
+            defaults.alt = text;
+            console.log("Imagine: alternative text = " + text);
+            updateImage();
+            return this;    
+        }
+
+        // caption text
+        function setStyle(style){
+            defaults.style = style;
+            var sty = defaults.style.split(":");
+            image.css(sty[0], sty[1]);            
+            updateImage();
+            return this;    
+        }
 
 
         //******* function to update thr image properties*******
         function updateImage(){
             if(defaults.placeholder){            
-                element.attr("src", defaults.placeholder);                            
+                image.attr("src", defaults.placeholder);                            
             }
 
             if(defaults.url){                
-                element.attr('src', defaults.url);                                                    
+                image.attr('src', defaults.url);                                                    
             }                         
             
             // resize
             if(defaults.resize){
                 var newSize = defaults.resize.split(",");
-                element.attr('width', newSize[0]);
-                element.attr('height', newSize[1]);                                                                        
+                image.attr('width', newSize[0]);
+                image.attr('height', newSize[1]);                                                                        
             };
             // end of resize
 
@@ -129,20 +138,28 @@
 
             // scale
             if(defaults.scale){                
-                element.attr({ 
-                    'width': element.width() * newScale,
-                    'height': element.height() * newScale                   
+                image.attr({ 
+                    'width': image.width() * newScale,
+                    'height': image.height() * newScale                   
                 });                                                                               
             }            
 
             // circular shape
             if(defaults.circular){
-                element.css('border-radius', '50%');
+                image.css('border-radius', '50%');
+            }
+
+            // circular shape
+            if(defaults.caption){           
+            }
+
+            // style shape
+            if(defaults.style){           
             }
 
             // alternative text
             if(defaults.alt){
-                element.attr('alt', defaults.alt);
+                image.attr('alt', defaults.alt);
             }
         }
         
@@ -152,8 +169,9 @@
             // placeholder: setPlaceholder,
             resize: setResize,
             rotate: setRotate,
-            scale: setScale,
             circular: setCircular,
+            caption: setCaption,
+            style: setStyle,
             alt: setAlternative,            
         };               
     }    

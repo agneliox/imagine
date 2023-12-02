@@ -76,3 +76,5 @@ Rendered HTML code:
     </p>
 </div>
 ```
+
+![The San Juan Mountains are beautiful!](https://ichef.bbci.co.uk/news/800/cpsprodpb/17C16/production/_117320379_giocondacerca.jpg' "San Juan Mountains")

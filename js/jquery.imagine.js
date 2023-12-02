@@ -1,3 +1,5 @@
+// library: imagine
+// author: agneliox
 
 (function($) {
     $.fn.imagine = function(){

@@ -5,7 +5,8 @@
     $.fn.imagine = function(){
         
         var element = this;
-        var image = jQuery("img", this);
+        var im = element.append('<img class="imagine"/>');
+        var image = jQuery("img", im);
 
         var defaults = {
             url: "",
@@ -92,6 +93,7 @@
         function setCaption(caption){
             defaults.caption = caption;
             var cap = defaults.caption.split(",");
+            // element.append('<img class="imagine"/>');
             element.append("<p class='caption-text'>"+ cap[0]+"</>");
             $(".caption-text").css("textAlign", cap[1]);
             updateImage();
